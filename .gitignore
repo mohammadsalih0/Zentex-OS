@@ -1,0 +1,111 @@
+cat << 'EOF' > .gitignore
+# ==============================================================================
+# Zentex OS / RISC-V Kernel - Production .gitignore
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. System & Security (Prevent accidental leaks)
+# ------------------------------------------------------------------------------
+*.key
+*.pem
+*.pfx
+*.p12
+.env
+.env.*
+!.env.example
+
+# ------------------------------------------------------------------------------
+# 2. Build Artifacts & Binaries
+# ------------------------------------------------------------------------------
+# Compiled object and archive files
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+
+# Assembly & Preprocessed outputs
+*.i
+*.s.tmp
+*.elf
+*.bin
+*.img
+*.iso
+*.out
+
+# Linker map files & dependency files
+*.map
+*.d
+
+# Build directories
+/build/
+/bin/
+/out/
+/dist/
+/target/
+
+# ------------------------------------------------------------------------------
+# 3. OS Kernel & Emulation Artifacts (QEMU / Toolchain)
+# ------------------------------------------------------------------------------
+# QEMU / Disk image outputs
+*.qcow2
+*.vmdk
+*.raw
+qemu.log
+trace.out
+
+# GDB & Debugging symbol dumps
+.gdb_history
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Coverage & Profiling
+*.gcda
+*.gcno
+*.gcov
+
+# ------------------------------------------------------------------------------
+# 4. Editors, IDEs & OS Files
+# ------------------------------------------------------------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux / Unix
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# VS Code / VSCodium
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# JetBrains (CLION / IntelliJ)
+.idea/
+*.iws
+*.iml
+
+# Vim / Emacs
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+.*.sw?
+\#*\#
+.\#*
+
+EOF
