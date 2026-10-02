@@ -17,28 +17,28 @@ jobs:
 
     - name: Install Toolchain and QEMU
       run: |
-      sudo apt update
-      sudo apt-get install -y gcc-riscv64-unknown-elf qemu-system-misc make
+        sudo apt update
+        sudo apt-get install -y gcc-riscv64-unknown-elf qemu-system-misc make
 
     - name: Build Zentex OS Kernel
       run: make
 
     - name: Run QEMU Headless Test
       run: |
-      timeout 5s qemu-system-riscv64 \
-      -machine virt \
-      -cpu rv64 \
-      -smp 1 \
-      -m 128M \
-      -bios default \
-      -kernel zentex.elf \
-      -nographic || exit_code=$?
+        timeout 5s qemu-system-riscv64 \
+        -machine virt \
+        -cpu rv64 \
+        -smp 1 \
+        -m 128M \
+        -bios default \
+        -kernel zentex.elf \
+        -nographic || exit_code=$?
 
-      # Timeout return code is 124, which is expected for a non-terminating kernel loop
-      if [ $exit_code -eq 124 ] || [ $exit_code -eq 0 ] ; then
+        # Timeout return code is 124, which is expected for a non-terminating kernel loop
+        if [ $exit_code -eq 124 ] || [ $exit_code -eq 0 ] ; then
         echo "QEMU booted successfuly"
         exit 0
-      else
+        else
         echo "QEMU execution failed with code $exit_code"
         exit 1
-      fi
+        fi
