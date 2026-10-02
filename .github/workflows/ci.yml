@@ -2,23 +2,25 @@ name: Zentex OS CI
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "master"]
+    paths-ignore:
+    - '**.md'
+    - '.gitignore'
+    - 'LICENSE'
+
   pull_request:
-    branches: ["main"]
+    branches: ["main", "master"]
 
 jobs:
   build:
-    name: Cross-Compile & Sanity Check
+    name: Fast Kernel Cross-Compile & QEMU Test
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/mohammadsalih0/zentex-env:latest
 
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
-
-    - name: Install Toolchain and QEMU
-      run: |
-        sudo apt update
-        sudo apt-get install -y gcc-riscv64-unknown-elf qemu-system-misc make
 
     - name: Build Zentex OS Kernel
       run: make
