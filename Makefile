@@ -8,16 +8,16 @@ OBJCOPY := $(CROSS_PREFIX)objcopy
 #Flags
 
 CFLAGS	:= -Wall -Wextra -pedantic -std=c11 \
-			-mcmodel=medany --ffreestanding -nostdlib -fno-builtin \
+			-mcmodel=medany -ffreestanding -nostdlib -fno-builtin \
 			-mabi=lp64d -march=rv64gc \
-			-Iinclude -g O2
+			-Iinclude -g -O2
 
 LDFLAGS	:= -T kernel.ld -nostdlib
 
 SRCS_S := $(wildcard src/*.s)
 SRCS_C := $(wildcard src/*.c)
 
-OBJ	:= $(SRCS_S:.s=.o) $(SRCS_C:.c=.o)
+OBJS	:= $(SRCS_S:.s=.o) $(SRCS_C:.c=.o)
 
 .PHONY: all clean run
 
@@ -28,7 +28,7 @@ all: $(TARGET)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$TARGET: $(OBJS) kernel.ld
+$(TARGET): $(OBJS) kernel.ld
 	$(LD) $(LDFLAGS) $(OBJS) -o $@
 
 run: $(TARGET)
