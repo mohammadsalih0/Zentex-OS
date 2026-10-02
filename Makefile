@@ -40,7 +40,7 @@ run: $(TARGET)
 		-smp 1 \
 		-m 128M \
 		-bios default \
-		-kernel $(TARGET) \
+		-kernel zentex.elf \
 		-nographic
 
 clean:
