@@ -3,7 +3,7 @@ ENTRY(_start)
 
 SECTIONS
 {
-    /* OpenSBI transfers execution to supervisor mode at 0x80200000
+    /* OpenSBI transfers execution to supervisor mode at 0x80200000 */
     . = 0x80200000;
     
     .text : AT(0x80200000) {

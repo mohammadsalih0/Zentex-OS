@@ -25,15 +25,17 @@ all: $(TARGET)
 
 %.o: %.s
 	$(CC) $(CFLAGS) -c $< -o $@
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(TARGET): $(OBJS) kernel.ld
 	$(LD) $(LDFLAGS) $(OBJS) -o $@
 
+
 run: $(TARGET)
 	qemu-system-riscv64 \
-		-machine virt\
+		-machine virt \
 		-cpu rv64 \
 		-smp 1 \
 		-m 128M \
