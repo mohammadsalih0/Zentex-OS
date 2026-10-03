@@ -11,7 +11,7 @@ void trap_init(void) {
 
 void trap_handler(struct trap_frame *tf) {
     uint64_t is_interrupt = (tf->scause >> 63) & 1;
-    uint64_t cause = tf->scause & 0x7FFF;
+    uint64_t cause = tf->scause & 0x7FFFFFFFFFFFFFFF;
 
     if (is_interrupt) {
         kprintf("[INTERRUPT] Code: %d\n", cause);

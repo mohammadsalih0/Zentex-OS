@@ -1,33 +1,24 @@
 .attribute arch, "rv64gc"
 .option norvc
 
-.section .text.entry
+.section .text.boot
 .globl _start
 
 _start:
     # Disable interrupts
-    csrw sstatus, zero
     csrw sie, zero
 
-    # Read current HARD ID (a0 contains hartid from OpenSBI)
-    # Park secondary HARTs for now
-    bnez a0, .Lpark
+    # Set up stack pointer
+    la sp, stack_top
 
-    # Setup stack pointer
-    la sp, boot_stack_top
-
-    # Jump to C entry point (main.c)
+    # Pass OpenSBI parameters to kmaain (a0 = hartid, a1 = dtb)
     call kmain
 
-.Lpark:
-    wfi
-    j .Lpark
+1: wfi
+    j 1b
 
 .section .bss
-.align 12
-.globl boot_stack_bottom
-
-boot_stack_bottom:
-    .skip 16384     # 16 KiB boot stack
-.globl boot_stack_top
-boot_stack_top:
+.align 16
+stack_bottom:
+    .skip 16384
+stack_top:

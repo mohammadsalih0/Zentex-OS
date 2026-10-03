@@ -16,15 +16,15 @@ void mm_init(void) {
 void *kalloc(void) {
     if (next_free_page + PAGE_SIZE > RAM_END) {
         kprintf("[MM] Out of memory!\n");
-        return 0;
+        return (void*)0;
     }
 
     void *ptr = (void *)next_free_page;
     next_free_page += PAGE_SIZE;
 
     // Zero out allocated page
-    uint64_t *p = (uint64_t *)ptr;
-    for (int i = 0; i < PAGE_SIZE / 8; i++) {
+    uint8_t *p = (uint8_t *)ptr;
+    for (uint32_t i = 0; i < PAGE_SIZE; i++) {
         p[i] = 0;
     }
 

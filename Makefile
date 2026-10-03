@@ -10,7 +10,7 @@ OBJCOPY := $(CROSS_PREFIX)objcopy
 CFLAGS	:= -Wall -Wextra -pedantic -std=c11 \
 			-mcmodel=medany -ffreestanding -nostdlib -fno-builtin \
 			-mabi=lp64d -march=rv64gc \
-			-Iinclude -g -O2
+			-Iinclude -g -O0
 
 LDFLAGS	:= -T kernel.ld -nostdlib
 
