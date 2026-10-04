@@ -32,10 +32,12 @@ SECTIONS
     .bss : {
         . = ALIGN(0x01000);
         _sbss = .;
+        _bss_start = .;
         *(.bss .bss.*)
         *(COMMON)
         . = ALIGN(0x1000);
         _ebss = .;
+        _bss_end = .;
     }
     . = ALIGN(0x1000);
     _kernel_end = .;

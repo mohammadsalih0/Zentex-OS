@@ -2,6 +2,7 @@
 #include "kprintf.h"
 #include "trap.h"
 #include "mm.h"
+#include "vmm.h"
 
 void kmain(unsigned long hartid, unsigned long dtb) {
     (void)hartid;
@@ -14,6 +15,7 @@ void kmain(unsigned long hartid, unsigned long dtb) {
     kprintf("[Zentex OS] RISC-V 64-bit initialization successful.\n");
 
     mm_init();
+    vmm_init();
 
     void *p1 = kalloc();
     void *p2 = kalloc();

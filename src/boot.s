@@ -11,10 +11,20 @@ _start:
     # Set up stack pointer
     la sp, stack_top
 
+    # Zero .bss section
+    la t0, _bss_start
+    la t1, _bss_end
+1:
+    bgeu t0, t1, 2f
+    sd zero, 0(t0)
+    addi t0, t0, 8
+    j 1b
+
+2:
     # Pass OpenSBI parameters to kmaain (a0 = hartid, a1 = dtb)
     call kmain
 
-1: wfi
+3: wfi
     j 1b
 
 .section .bss
