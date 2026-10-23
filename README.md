@@ -1,4 +1,4 @@
-# 🪐 Project Zentex OS
+# Project Zentex OS
 
 A modern, opinionated, Unix-like operating system kernel targeted at the RISC-V 64-bit architecture (`rv64gc`). Built to explore lightweight systems design, clean abstraction boundaries, and async-first subsystem workflows without legacy x86 baggage.
 
@@ -8,7 +8,7 @@ A modern, opinionated, Unix-like operating system kernel targeted at the RISC-V 
 
 ---
 
-## 🛠️ Planned Technical Architecture
+## Planned Technical Architecture
 
 ### 1. Execution Environment & Boot Pipeline
 * **Target Architecture:** RISC-V 64-bit (`rv64gc`) on QEMU `virt` machine topology.
@@ -31,7 +31,7 @@ A modern, opinionated, Unix-like operating system kernel targeted at the RISC-V 
 
 ---
 
-## ⚡ Target System Roadmap & Specs
+## Target System Roadmap & Specs
 
 | Feature Subsystem | Current State / Target Spec | Status |
 | :--- | :--- | :--- |
@@ -44,7 +44,7 @@ A modern, opinionated, Unix-like operating system kernel targeted at the RISC-V 
 
 ---
 
-## 📦 Building and Running (QEMU Target)
+## Building and Running (QEMU Target)
 
 ### Prerequisites
 * `riscv64-unknown-elf-gcc` or `clang` cross-compiler toolchain
